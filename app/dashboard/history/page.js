@@ -10,12 +10,12 @@ export default function History () {
                 <h1 className="text-xl text-gray -800 mb-4">My loan History</h1>
                 <div className="flex flex-col gap ">
                     {dummy.map(loan => <HistoryTab
-                        amount
-                        rate
-                        duration
+                        amount={5000}
+                        rate={12.5}
+                        duration={30}
                         date="13 JUL 2024"
                         type="personl"
-                        key={loan}/>)}mb
+                        key={loan}/>)}
                 </div>
             </div>
         </main>
