@@ -69,7 +69,7 @@ const duration = [
             </div>
             <div className="flex items-center gap-1">
                 <button className="p-2 rounded bg-blue-600 text-white text-xl uppercase">Get Loan</button>
-                <CircularProgress style={(display:!opsProgress ? "none" : "flex")}/>
+                <CircularProgress style={{display:!opsProgress ? "none" : "flex"}}/>
             </div>
         </div>
         </main>
