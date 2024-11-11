@@ -1,6 +1,5 @@
 "use client"
 import React from "react";
-import { useSearchParams } from "next/navigation";
 import { db } from "@/config/firebase.config"
 import { doc,getDoc } from "firebase/firestore"
 import { Skeleton } from "@mui/material";
@@ -8,6 +7,7 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import {TextField,Button} from "@mui/material"
 import { useRouter } from "next/navigation";
+import { AppContext } from "@/config/context.config";
 
 const schema = yup.object().shape({
     amount: yup.number().required().min(1),
@@ -28,7 +28,7 @@ export default function History () {
 
     React.useEffect(() => {
         const handleDocFetch = async () => {
-            const docRef = doc(db,"loans",docId);
+            const docRef = doc(db,"loans", loanDocId);
             const res = await getDoc(docRef);
     
             if (res.exists()) {
@@ -49,17 +49,6 @@ export default function History () {
             },
             validationSchema:schema
         });
-        
-        
-    },[]);
-
-    const { handleSubmit,handleChange,touched,errors,values } = useFormik({
-        initialValues: {amount:undefined},
-        onSubmit: () => {
-
-        },
-        validationSchema:schema
-    });
 
     return (
         <main className="min-h-screen flex justify-center items-center bg-gradient-to-b from-gray-50 via-gray-100 to-gray-200 py-16">

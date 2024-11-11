@@ -1,5 +1,5 @@
 import NextAuth from "next-auth";
-import GoogleProvider from "next-auth/providers/Google";
+import GoogleProvider from "next-auth/providers/google";
 import { FirestoreAdapter } from "@auth/firebase-adapter";
 import { cert } from "firebase-admin/app";
 
@@ -22,7 +22,7 @@ export const { handlers, signIn, signOut, auth  } = NextAuth({
     },
     callbacks: {
         session: async ({session}) => {
-            console.log(">>>>>>>",session)
+            return session;
         }
     }
 });
