@@ -6,10 +6,15 @@ import { doc,getDoc } from "firebase/firestore"
 import { Skeleton } from "@mui/material";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import {  } from "module";
+import {TextField,Button} from "@mui/material"
+import { AppContext } from "@/config/context.config";
 
-const schema = yup.object().shape
+const schema = yup.object().shape({
+    amount: yup.number().required().min(1),
+});
+
 export default function History () {
+    const {loanDocId} = React.useContext(AppContext);
     const [loan,setLoans] = React.useState(null);
     const [totalOffsets,setTotalOffsets] = React.useState(0);
 

@@ -1,8 +1,18 @@
-import Link from "next/link"
+"use client"
+import { useContext } from "react"
+import { AppContext } from "@/config/context.config"
+import { redirect } from "next/navigation"
 
-export function HistoryTab ({amount,rate,duration,date,type}) {
+export function HistoryTab ({docId,amount,rate,duration,date,type}) {
+    const { setLoanDocId } = useContext(AppContext)
+
     return (
-        <Link href={`/dashboard/loan-details?doc_id=`} className="flex flex-col border border-blue-100 rounded-md p-3">
+        <div
+        onClick={() => {
+            setLoanDocId(docId);
+            redirect("/dashboard/loan-details")
+        }} 
+        className="flex flex-col border border-blue-100 rounded-md p-3">
         <ul className="flex justify-between border-b border-blue-100 pb-2">
             <li className="font-bold text-2xl text-gray-700">N{amount}</li>
             <li className="text-xs text-blue-500">{rate}%</li>
@@ -13,6 +23,6 @@ export function HistoryTab ({amount,rate,duration,date,type}) {
             <li className="text-sm text-gray-700">{date}</li>
             <li className="text-sm text-gray-700">{type}</li>
         </ul>
-    </Link>
+    </div>
     )
 }
