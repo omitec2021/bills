@@ -1,16 +1,17 @@
 "use client"
 import { useContext } from "react"
 import { AppContext } from "@/config/context.config"
-import { redirect } from "next/navigation"
+import { useRouter } from "next/navigation"
 
 export function HistoryTab ({docId,amount,rate,duration,date,type}) {
-    const { setLoanDocId } = useContext(AppContext)
+    const { setLoanDocId } = useContext(AppContext);
+    const router = useRouter();
 
     return (
         <div
         onClick={() => {
             setLoanDocId(docId);
-            redirect("/dashboard/loan-details")
+           router.push("/dashboard/loan-details")
         }} 
         className="flex flex-col border border-blue-100 rounded-md p-3">
         <ul className="flex justify-between border-b border-blue-100 pb-2">
